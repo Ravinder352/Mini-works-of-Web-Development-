@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator EMI</title>
+    <style>
+        body{
+            background-color: lightblue;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container{
+            background-color: violet;
+            border-radius:25px;
+            box-shadow: 0 0 20px rgba(199, 213, 10, 0.2);
+            padding: 30px;
+            max-width: 400px;
+        }
+
+        h2{
+            color: brown;
+        }
+
+        label {
+            font-weight: bold;
+            color: black;
+        }
+
+        input[type="number"]{
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0px;
+            border: 1px solid;
+            border-radius: 5px;
+        }
+
+        button{
+            background-color: blue;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: medium;
+            color: rgb(239, 10, 10);
+        }
+
+        #refresh {
+            border-radius: 50px;
+            background-color: green;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2><u>EMI Calculator:</u></h2>
+        <h3><b>Enter the details as mentioned:</b></h3>
+        <label for="loanAmount">Loan Amount:-</label>
+        <input type="number" id="loanAmount" placeholder="Enter amount in Rupees" required><br>
+        <label for="interestRate">Annual Interest Rate:-</label>
+        <input type="number" id="interestRate" placeholder="Enter interest rate" required><br>
+        <label for="loanTenure">Loan Tenure (in months):-</label>
+        <input type="number" id="loanTenure" placeholder="Enter time period in months" required>
+        <button onclick="calculateEMI()">Calculate EMI</button>
+        <button id="refresh" onclick="resetFields()">Refresh</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculateEMI() {
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value);
+            const loanTenure = parseFloat(document.getElementById('loanTenure').value);
+
+            const monthlyInterestRate = (interestRate / 12) / 100;
+            const numerator = loanAmount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, loanTenure);
+            const denominator = Math.pow(1 + monthlyInterestRate, loanTenure) - 1;
+            const emi = (numerator / denominator).toFixed(2);
+            const totalRepayment = (emi * loanTenure).toFixed(2);
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `
+                <div>Your Monthly EMI: <span style="color: blue">₹ ${emi} </span></div>
+                <div>Total Repayment Amount: <span style="color: blue;">₹ ${totalRepayment} </span></div>
+            `;
+        }
+
+        function resetFields() {
+            document.getElementById('loanAmount').value = '';
+            document.getElementById('interestRate').value = '';
+            document.getElementById('loanTenure').value = '';
+            document.getElementById('result').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
