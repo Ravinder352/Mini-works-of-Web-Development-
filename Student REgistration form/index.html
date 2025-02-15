@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="style.css"> <!-- Linking external CSS -->
+</head>
+
+<body>
+    <div>
+        <h1 align="center"><span style="color:brown"><u>Student Registration Form</u></span></h1>
+        <h4><b>Enter the <i><span style="color:blue">Student details</span></i> as mentioned</b></h4>
+
+        <form>
+            <p><span style="color: rgb(85, 9, 209)"><b>Enter your name :-</b></span></p>
+            <input type="text" id="fname" name="fname" placeholder=" first name">
+            <input type="text" id="lname" name="lname" placeholder=" last name"><br>
+            <input type="reset">
+
+            <p><span style="color: rgb(208, 14, 175)"><b>Gender :-</b></span></p>
+            <input type="radio" id="male" name="gender" value="Male">
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label><br>
+            <input type="radio" id="others" name="gender" value="others">
+            <label for="others">Others</label><br>
+            <input type="radio" id="pnts" name="gender" value="pnts">
+            <label for="pnts">Prefer not to say</label><br><br />
+
+            <label for="birthday"><b>Date of birth :- </b></label>
+            <input type="datetime-local" id="birthday" name="birthday" value="1998-07-01 11:30">
+
+            <p><span style="color: rgb(249, 6, 26)"><b>Grade History :-</b></span></p>
+
+            <span style="color: rgb(236, 82, 5)"><b>Tenth/10<sup>th</sup> :</b></span>
+            <input type="radio" name="option" id="percentageOption" onclick="showInput('percentage')"> Percentage
+            <input type="radio" name="option" id="cgpaOption" onclick="showInput('cgpa')"> CGPA
+            <br />
+            <div id="inputContainer" style="display: none;">
+                <p id="inputLabel"></p>
+                <input type="number" id="inputField" min="1" max="100" oninput="handleInput()">
+            </div>
+
+            <span style="color: rgb(236, 82, 5)"><b>Intermediate/ 12<sup>th</sup> :</b></span>
+            <input type="radio" name="option2" id="percentageOption2" onclick="showInput2('percentage')"> Percentage
+            <input type="radio" name="option2" id="cgpaOption2" onclick="showInput2('cgpa')"> CGPA
+            <div id="inputContainer2" style="display: none;">
+                <p id="inputLabel2"></p>
+                <input type="number" id="inputField2" min="1" max="100" oninput="handleInput2()">
+            </div>
+
+            <p><span style="color: rgb(19, 167, 241)"><b>Course preference :-</b></span></p>
+            <input type="radio" id="btech" name="cp" value="btech">
+            <label for="btech">Btech</label><br>
+            <input type="radio" id="bba" name="cp" value="bba">
+            <label for="bba">BBA</label><br>
+            <input type="radio" id="bsc" name="cp" value="bsc">
+            <label for="bsc">BSC</label><br>
+            <input type="radio" id="imtech" name="cp" value="imtech">
+            <label for="imtech">Integrated Mtech</label><br>
+            <input type="radio" id="otherc" name="cp" value="otherc">
+            <label for="otherc">Other Courses</label><br>
+
+            <p><span style="color: rgb(3, 52, 74)"><b>Hobbies :-</b></span></p>
+            <input type="checkbox" id="studies" name="hobbies" value="studies">
+            <label for="studies">Studies</label><br>
+            <input type="checkbox" id="cricket" name="hobbies" value="games">
+            <label for="cricket">Cricket</label><br>
+            <input type="checkbox" id="football" name="hobbies" value="movies">
+            <label for="football">Foot Ball</label><br>
+            <input type="checkbox" id="sleeping" name="hobbies" value="sleeping">
+            <label for="sleeping">Sleeping</label><br>
+            <br>
+
+            <span style="color: rgb(15, 120, 241)"><b>Rate this Student registration form :</b></span>
+            <select>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select>
+            <p><b>Submit :-</b></p>
+        </form><br />
+    </div>
+
+    <form align="center" action="https://vit.ac.in/">
+        <input type="image" src="submit.png" alt="Submit" width="48" height="48">
+    </form>
+
+    <!-- Linking external JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>
