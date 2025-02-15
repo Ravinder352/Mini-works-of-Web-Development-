@@ -1,0 +1,75 @@
+/* css for question page - (21MID0018) */
+.background {
+    background-color: #bde11c;
+    padding: 20px;
+    border: 2px solid #f97502;
+    border-radius: 10px;
+    margin-top: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+.timer {
+    font-weight: bold;
+}
+.feed1{
+    text-align: center;
+    margin-top: 50px;
+}
+.radio-container {
+    margin-left: 300px;
+    text-align: left;
+}
+
+/* css for page appearance */
+.wrapper {
+    border-top: 10px;
+    background-color: #22b7e1;
+    border: 2px solid #f97502;
+    padding: 5px;
+    margin-top: 80px;
+    margin-left: 350px;
+    max-width: 800px;
+    border-radius: 10px;
+}
+.boxappear {
+    padding: 5px;
+    border: 2px solid #bc23d3;
+    margin: 0 auto;
+    max-width: 250px;
+    color: rgb(241, 56, 56);
+    border-radius: 5px;
+}
+.headappear {
+    padding: 5px;
+    border: 2px solid #d418c1;
+    margin: 0 auto;
+    max-width: 250px;
+    color: rgb(241, 56, 56);
+    background-color: #09e535;
+    border-radius: 500px;
+    opacity: 0.9;
+}
+
+/* CSS for showing the time taken for each question in table */
+#questionTable {
+    border-collapse: collapse;
+    width: 50%;
+    margin: 0 auto;
+}
+#questionTable td, #questionTable th {
+    border: 1px solid #341bb4;
+    padding: solid 8px;
+    text-align: center;
+}
+#questionTable th {
+    background-color: #11dd29;
+}
+.feedback-container {
+    display: none;
+    text-align: center;
+    margin-top: 50px;
+}

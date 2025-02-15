@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Answer us</title>
+    <style>
+        /* css for question page - (21MID0018) */
+        .background {
+            background-color: #bde11c;
+            padding: 20px;
+            border: 2px solid #f97502;
+            border-radius: 10px;
+            margin-top: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .timer {
+            font-weight: bold;
+        }
+        .feed1{
+            text-align: center;
+            margin-top: 50px;
+        }
+        .radio-container {
+            margin-left: 300px;
+            text-align: left;
+        }
+
+        /* css for page appearnce */
+        .wrapper {
+            border-top: 10px;
+            background-color: #22b7e1;
+            border: 2px solid #f97502;
+            padding: 5px;
+            margin-top: 80px;
+            margin-left: 350px;
+            max-width: 800px;
+            border-radius: 10px;
+        }
+        .boxappear{
+            padding: 5px;
+            border: 2px solid #bc23d3;
+            padding: 5px;
+            margin: 0 auto;
+            max-width: 250px;
+            color: rgb(241, 56, 56);
+            border-radius: 5px;
+        }
+        .headappear{
+            padding: 5px;
+            border: 2px solid #d418c1;
+            padding: 5px;
+            margin: 0 auto;
+            max-width: 250px;
+            color: rgb(241, 56, 56);
+            background-color: #09e535;
+            border-radius: 500px;
+            opacity: 0.9;
+        }
+
+        /* csee for showing the time taken for eqch question in table  */
+        #questionTable {
+            border-collapse: collapse;
+            width: 50%;
+            margin: 0 auto;
+        }
+        #questionTable td, #questionTable th {
+            border: 1px solid #341bb4;
+            padding: solid 8px;
+            text-align: center;
+        }
+        #questionTable th {
+            background-color: #11dd29;
+        }
+        .feedback-container {
+            display: none;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- defining the webpage content -->
+    <div class="wrapper"> 
+          <!-- defining the questions page- (21mid0018) -->
+        <div class="container">
+            <div>
+                <h2><span id="questionHeader" class="headappear"><u>Answer the question</u></span></h2>
+                <p id="question"  class="radio-container"></p>
+                <div class="radio-container" id="options">
+                    <!-- Radio options will be added here directly -->
+                </div>
+            </div>
+            <div class="timer">
+                <br><p id="timeRemaining" class="boxappear" style="background-color: #6beae2;">Time Left: <span id="timer">30</span> seconds</p>
+            </div>
+            <br><button id="submitBtn" style="background-color: rgb(51, 240, 51);">Submit</button>
+        </div>
+          <!-- defining the feedback page- (21mid0018) -->
+        <div class="feedback-container">
+            <h2 style="color: red;"><u>Analysis and Feedback</u></h2>
+            <table id="questionTable">
+                <thead>
+                    <tr  class="radio-container">
+                        <th style="color: brown;"><b>Question</b</th>
+                        <th style="color: brown;"><b>Time (seconds)</b></th>
+                    </tr>
+                </thead>
+                <tbody id="questionTimes"></tbody>
+            </table>
+            <br><p class="boxappear" style="background-color: #1ef8a1;"><b>Total Time Spent: <span id="totalTime">0</b></span> </p>
+            <div class="feed1">
+                <label for="rating">Rate your experience (1-5):</label>
+                <input type="number" id="rating" min="1" max="5"><br>
+                <br><label for="feed"> Any suggestions : </label>
+                <input type="text" id="feed"><br>
+                <br><button id="submitFeedback" style="color: white; background-color: rgb(229, 8, 225);">Submit Feedback</button>
+            </div>
+        </div>
+    </div>
+     <!-- javascript code - (21MID0018) -->
+    <script>
+        // for 20 questions
+              const questions = [
+            {
+                question: "What is your favorite color?",
+                options: ["Red", "Blue", "Green", "Yellow"]
+            },
+            {
+                question: "What is your favorite animal?",
+                options: ["Dog", "Cat", "Bird", "Fish"]
+            },
+            {
+                question: "What is your favorite food?",
+                options: ["Pizza", "Burger", "Pasta", "Sushi"]
+            },
+            {
+                question:"Which state you are belongs to ?",
+                options: ["Tamil Nadu", "Andhara Pradesh","Telangana","Other states"]
+            },
+            {
+                question:"How old are you ?",
+                options: ["below 16 years", "16-18 years","18-22 years","above 22 years"]
+            },
+            {
+                question:"Where do you stay ?",
+                options: ["town", "village","city","Other areas"]
+            },
+            {
+                question:"what is your eduaction status ?",
+                options: ["below tenth", "Tenth","Intermediate","Completed intermediate"]
+            },
+            {
+                question:"Select object that is in green",
+                options: ["apple", "leaf","beans","all of the above "]
+            },
+            {
+                question:"When do you wakeup in morning ?",
+                options: ["Before 5:00 am", "5:00 am - 6:00 am","6:00-8:00am","after 8:00 am"]
+            },
+            {
+                question:"How many hours do you sleep ?",
+                options: ["10", "8","7","it varies every day"]
+            },
+            {
+                question:"What do you make in your free time mostly ?",
+                options: ["playing", "travelling ","spend some time for you","Other activities"]
+            },
+            {
+                question:"where do eat daily ? ",
+                options: ["Rice", "Roti","both","other than these options"]
+            },
+            {
+                question:"which browser do you use mostly",
+                options: ["Chrome", "edge","firefox","Others "]
+            },
+            {
+                question:"At what time do you mostly spend your time in internet ?",
+                options: ["morning", "afternoon","night","it varies daily"]
+            },
+            {
+                question:"which social media you will use mostly ?",
+                options: ["Whats app", "instagram","facebook","Other apps"]
+            },
+            {
+                question:"which day in a week do you like most",
+                options: ["Saturday", "Sunday","Monday","any other days"]
+            },
+            {
+                question:"Which upcomming feature attracts you most in x app ",
+                options: ["Audio calls", "vedio calls","payments for content creaters","Other features"]
+            },
+            {
+                question:"What do think about 0 (zero) number",
+                options: ["no value", "some value","imaginary content","Other reasons"]
+            },
+            {
+                question:"Add I + II + III roman numbers",
+                options: ["6", "IIIIII","I1I2I3","any value"]
+            },
+            {
+                question:"Which is an Indian organization ? ",
+                options: ["NASA", "ISRO","FBI","Spacex"]
+            },
+        ];
+
+        // defining variables
+        let currentQuestionIndex = 0;
+        let timer;
+        let totalTime = 0;
+        let questionTimes = [];
+
+        const questionElement = document.getElementById("question");
+        const questionHeader = document.getElementById("questionHeader");
+        const timeRemainingElement = document.getElementById("timeRemaining");
+        const optionsContainer = document.getElementById("options");
+        const timerElement = document.getElementById("timer");
+        const submitBtn = document.getElementById("submitBtn");
+        const feedbackContainer = document.querySelector(".feedback-container");
+        const totalTimeElement = document.getElementById("totalTime");
+        const questionTimesElement = document.getElementById("questionTimes");
+        const ratingInput = document.getElementById("rating");
+        const feedbackInput = document.getElementById("feed");
+        const submitFeedbackBtn = document.getElementById("submitFeedback");
+
+            function displayQuestion() {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionElement.textContent = ` ${currentQuestionIndex + 1}. ${currentQuestion.question}`; // Modify this line
+                questionHeader.style.display = "block"; 
+                // radio options
+                optionsContainer.innerHTML = "";
+                currentQuestion.options.forEach((option, index) => {
+                    const input = document.createElement("input");
+                    input.type = "radio";
+                    input.name = "option";
+                    input.value = index;
+                    input.required = true;
+                    const label = document.createElement("label");
+                    label.textContent = option;
+                    optionsContainer.appendChild(input);
+                    optionsContainer.appendChild(label);
+                    optionsContainer.appendChild(document.createElement("br"));
+                });
+
+                timerElement.textContent = "30";
+                startTimer();
+            }
+
+
+        // for making timer work
+        function startTimer() {
+            let timeLeft = 30;
+            timer = setInterval(function () {
+                timeLeft--;
+                timerElement.textContent = timeLeft;
+                if (timeLeft === 0) {
+                    clearInterval(timer);
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+
+        // to display next question and feedbackform
+        function nextQuestion() {
+            clearInterval(timer);
+            const timeSpent = 30 - parseInt(timerElement.textContent);
+            questionTimes.push({ question: `Question ${currentQuestionIndex + 1}`, time: timeSpent });
+            totalTime += timeSpent;
+
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                showFeedbackForm();
+            }
+        }
+        // to show feedback form
+        function showFeedbackForm() {
+            feedbackContainer.style.display = "block";
+            questionElement.style.display = "none";
+            timeRemainingElement.style.display = "none";
+            questionHeader.style.display = "none"; // Hiding the heading 
+            totalTimeElement.textContent = totalTime + " seconds";
+            questionTimesElement.innerHTML = "";
+            questionTimes.forEach((entry) => {
+                const row = document.createElement("tr");
+                const questionCell = document.createElement("td");
+                const timeCell = document.createElement("td");
+                questionCell.textContent = entry.question;
+                timeCell.textContent = entry.time;
+                row.appendChild(questionCell);
+                row.appendChild(timeCell);
+                questionTimesElement.appendChild(row);
+            });
+
+            // Hide the last question
+            optionsContainer.innerHTML = "";
+            submitBtn.style.display = "none";
+        }
+
+        // for rating and suggestions
+        submitFeedbackBtn.addEventListener("click", function () {
+            const rating = parseInt(ratingInput.value);
+            const feedback = feedbackInput.value;
+            if (rating >= 1 && rating <= 5) {
+                alert("Feedback submitted successfully!");
+            } else {
+                alert("Please enter a valid rating (1-5).");
+            }
+        });
+
+        submitBtn.addEventListener("click", nextQuestion);
+
+        displayQuestion();
+    </script>
+</body>
+</html>
